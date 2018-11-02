@@ -1,28 +1,51 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { connect } from 'react-redux';
+import { Switch, Route, withRouter } from 'react-router-dom';
+
+import { handleLogin } from './actions/UserAction';
+import { getNews } from './actions/NewsAction';
+
+import Navbar from './components/Navbar';
+import Main from './components/Main';
+import News from './components/News';
+import Profile from './components/Profile';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div>
+                <Navbar />
+                <Switch>
+                    <Route exact path='/' render={(routerProps) =>
+                        <Main {...this.props} />
+                    }/>                   
+                    <Route path='/news' render={(routerProps) => 
+                        <News {...this.props} {...routerProps} />
+                    }/>
+                    <Route path='/profile' render={(routerProps) =>
+                        <Profile {...this.props} />
+                    }/>
+                </Switch>
+            </div>
+        );
+    }
 }
 
-export default App;
+const mapStateToProps = store => {
+    return {
+        news: store.news,
+        user: store.user
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        handleLogin: () => dispatch(handleLogin()),
+        getNews: (news) => dispatch(getNews(news))
+    }
+}
+
+export default withRouter(connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App));
