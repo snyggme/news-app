@@ -12,8 +12,10 @@ class News extends Component{
 			<section className='news-container'>
 				{ isFetching 
 					? <div className='loading' />
-					: articles.map((article, index) => 
-						<Article key={index} {...article} />
+					: error 
+						? <div>{error}</div>
+						: articles.map((article, index) => 
+							<Article key={index} {...article} />
 					)
 				}
 			</section>

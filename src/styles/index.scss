@@ -1,7 +1,9 @@
 @import '_normilize';
 
 $navcolor: #171e27;
-$offwhite: #eff1f7;
+$offwhite: #F5F5F6;
+$articletitle: #3e454f;
+$articletext: #E1E2E1;
 
 body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
@@ -67,6 +69,49 @@ main {
 		height: 450px;
 		top: 35%;
 		left: 60%;
+	}
+}
+
+.news-container {
+	max-width: 1000px;
+	margin: 0px auto;
+	display: flex;
+	flex-wrap: wrap;
+
+	article {
+		flex: 1 1 calc(100% - 50px);
+		margin: 50px 50px 0px 50px;
+		font-size: 23px;
+		line-height: 35px;
+		height: 500px;
+		overflow: hidden;
+		text-align: justify;
+
+		h3 {
+			font-size: 30px;
+			padding: 20px 30px;
+			background-color: $articletitle;
+			color: white;
+
+			.article-date {
+				font-size: 18px;
+				font-weight: normal;
+				padding-right: 10px;
+				color: rgba(255,255,255,0.48);
+				float: right;
+			}
+		}
+
+		div {
+			padding: 20px 80px;
+			background-color: $articletext;
+			transition: all 200ms;
+		}
+
+		div:hover {
+			transform: scale(1.12);
+			cursor: pointer;
+		}
 	}
 }
 
