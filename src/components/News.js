@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Article from './Article';
 
-const News = (props) => {
-	return (
-		<main>
-			<h1>News</h1>
-		</main>
-	)
+class News extends Component{
+	componentDidMount() {
+		this.props.getNews();
+	}
+	render() {
+		const { isFetching, articles, error } = this.props.news;
+
+		return (
+			<section className='news-container'>
+				{ isFetching 
+					? <div className='loading' />
+					: articles.map((article, index) => 
+						<Article key={index} {...article} />
+					)
+				}
+			</section>
+		)
+	}
 }
 
 export default News;

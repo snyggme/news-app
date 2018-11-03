@@ -41,7 +41,7 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => {
     return {
         handleLogin: () => dispatch(handleLogin()),
-        getNews: (news) => dispatch(getNews(news))
+        getNews: () => dispatch(getNews())
     }
 }
 
