@@ -102,15 +102,19 @@ main {
 			}
 		}
 
-		div {
-			padding: 20px 80px;
-			background-color: $articletext;
-			transition: all 200ms;
-		}
+		.article-button {
+			text-decoration: none;
+			color: inherit;
 
-		div:hover {
-			transform: scale(1.12);
-			cursor: pointer;
+			div {
+				padding: 20px 80px;
+				background-color: $articletext;
+				transition: all 200ms;
+
+				&:hover {
+					transform: scale(1.12);
+				}
+			}
 		}
 	}
 }

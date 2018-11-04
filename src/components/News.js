@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Article from './Article';
+import Single from './Single';
 
 class News extends Component{
 	componentDidMount() {

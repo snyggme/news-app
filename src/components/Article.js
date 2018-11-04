@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Article extends Component {
 	constructor(props) {
 		super(props);
-
-		this.rand1 = 0;
+		// day
+		this.rand1 = 1;
+		// month
 		this.rand2 = 0;
+		// mins read
 		this.rand3 = 0;
 	}
 	componentWillMount() {
@@ -14,7 +17,7 @@ class Article extends Component {
 		this.rand3 = Math.floor(Math.random() * 20) + 3;
 	}
 	render() {
-		const { name, text } = this.props;
+		const { name, text, id } = this.props;
 
 		return (
 			<article>
@@ -24,11 +27,12 @@ class Article extends Component {
 						{`${months[this.rand2]} ${this.rand1}`}  &#183; {`${this.rand3} min read`}
 					</span>
 				</h3>
-				<div>{text}</div>
+				<Link className='article-button' to={`/news/${id}`}>
+					<div>{text}</div>
+				</Link>
 			</article>
 		)
 	}
-	
 }
 
 export default Article;

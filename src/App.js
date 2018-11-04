@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 import Main from './components/Main';
 import News from './components/News';
 import Profile from './components/Profile';
+import Single from './components/Single';
 
 class App extends Component {
     render() {
@@ -18,10 +19,14 @@ class App extends Component {
                 <Switch>
                     <Route exact path='/' render={(routerProps) =>
                         <Main {...this.props} />
-                    }/>                   
-                    <Route path='/news' render={(routerProps) => 
+                    }/>             
+                    <Route exact path='/news' render={(routerProps) => 
                         <News {...this.props} {...routerProps} />
-                    }/>
+                    }>
+                    </Route>
+                    <Route path='/news/:articleId' render={(routerProps) => 
+                        <Single {...this.props} {...routerProps} />
+                    } /> 
                     <Route path='/profile' render={(routerProps) =>
                         <Profile {...this.props} />
                     }/>
