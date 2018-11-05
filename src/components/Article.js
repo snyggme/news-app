@@ -22,10 +22,15 @@ class Article extends Component {
 		return (
 			<article>
 				<h3>
-					<span>{name}</span> 
+					<span>
+						<Link className='article-button' to={`/news/${id}`}>
+							{name}
+						</Link>
+					</span> 
 					<span className='article-date'>
 						{`${months[this.rand2]} ${this.rand1}`}  &#183; {`${this.rand3} min read`}
 					</span>
+					<span className='article-bookmark'><i className="fa fa-bookmark-o" aria-hidden="true"></i></span>
 				</h3>
 				<Link className='article-button' to={`/news/${id}`}>
 					<div>{text}</div>

@@ -4,27 +4,28 @@ import { GET_NEWS_FAIL } from '../actions/NewsAction';
 
 const initialState = {
 	articles: [],
-	error: '',
-	isFetching: false
+	error: false,
+	errorMessage: '',
+	isFetching: true
 };
 
 export const newsReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case GET_NEWS_REQUEST:
 			return {
-				...state,
-				isFetching: true
+				...state
 			}
 		case GET_NEWS_SUCCESS:
 			return {
+				...state,
 				articles: action.payload,
-				error: '',
 				isFetching: false
 			}
 		case GET_NEWS_FAIL:
 			return {
 				...state,
-				error: action.payload.message,
+				error: true,
+				errorMessage: action.payload,
 				isFetching: false
 			}
  		default:

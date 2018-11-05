@@ -24,7 +24,7 @@ const Navbar = (props) => {
 					</Link>
 				</li>
 				<li className='btn-login'>
-					<Link to='/'>
+					<Link to='/login'>
 						<i className="fa fa-sign-in" aria-hidden="true"></i>
 						Login
 					</Link>

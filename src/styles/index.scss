@@ -92,13 +92,32 @@ main {
 			padding: 20px 30px;
 			background-color: $articletitle;
 			color: white;
+			display: flex;
+			
+			span {
+				flex: 0 1 190px;
+
+				a:hover {
+					color: rgba(255,255,255,0.48);
+				}
+			}
 
 			.article-date {
+				flex-grow: 1;
 				font-size: 18px;
 				font-weight: normal;
-				padding-right: 10px;
+				text-align: right;
 				color: rgba(255,255,255,0.48);
-				float: right;
+			}
+
+			.article-bookmark {
+				flex-basis: 80px;
+				text-align: right;
+
+				&:hover {
+					color: #BF360C;
+					cursor: pointer;
+				}
 			}
 		}
 
@@ -112,10 +131,73 @@ main {
 				transition: all 200ms;
 
 				&:hover {
-					transform: scale(1.12);
+					transform: scale(1.03);
 				}
 			}
 		}
+	}
+}
+
+.single-article {
+	max-width: 1000px;
+	margin: 0 auto;
+	font-size: 25px;
+	line-height: 40px;
+	text-align: justify;
+
+	h2 {
+		font-size: 45px;
+		padding-top: 40px;
+		padding-bottom: 30px;
+		text-align: center;
+	}
+
+	.single-article-bookmark {
+		position: fixed;
+		top: 100px;
+		right: 300px;
+		font-size: 30px;
+		transition: all 100ms;
+
+		&:hover {
+			color: #BF360C;
+			cursor: pointer;
+			transform: scale(1.1);
+		}
+	}
+}
+
+#login-form {
+	max-width: 300px;
+	margin: 200px auto;
+	height: 200px;
+	font-size: 16px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+
+	* {
+		flex: 0 0 40px;
+		border-radius: 6px;
+		border: 2px solid rgb(221, 221, 221);
+		outline: none;
+		padding-left: 25px;
+		transition: all 200ms;
+	}
+
+	#email:focus {
+		border-color: grey;
+	}
+
+	#password:focus {
+		border-color: grey;
+	}
+
+	#submit-btn {
+		padding: 0;
+		color: #545454;
+		background-color: $articletext;
+		border-color: #a8a8a8;
 	}
 }
 

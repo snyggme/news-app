@@ -10,6 +10,8 @@ import Main from './components/Main';
 import News from './components/News';
 import Profile from './components/Profile';
 import Single from './components/Single';
+import PrivateRoute from './components/PrivateRoute';
+import LoginForm from './components/LoginForm';
 
 class App extends Component {
     render() {
@@ -26,9 +28,12 @@ class App extends Component {
                     </Route>
                     <Route path='/news/:articleId' render={(routerProps) => 
                         <Single {...this.props} {...routerProps} />
-                    } /> 
-                    <Route path='/profile' render={(routerProps) =>
+                    }/> 
+                    <PrivateRoute path='/profile' render={(routerProps) =>
                         <Profile {...this.props} />
+                    }/>
+                    <Route path='/login' render={(routerProps) =>
+                        <LoginForm {...this.props} />
                     }/>
                 </Switch>
             </div>
@@ -45,7 +50,7 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        handleLogin: () => dispatch(handleLogin()),
+        handleLogin: (e) => dispatch(handleLogin(e)),
         getNews: () => dispatch(getNews())
     }
 }

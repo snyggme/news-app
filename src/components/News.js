@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import Article from './Article';
-import Single from './Single';
 
-class News extends Component{
-	componentDidMount() {
+class News extends Component {
+	constructor(props){
+		super(props);
+		
 		this.props.getNews();
 	}
 	render() {
-		const { isFetching, articles, error } = this.props.news;
+		const { isFetching, articles, error, errorMessage } = this.props.news;
 
 		return (
 			<section className='news-container'>
 				{ isFetching 
 					? <div className='loading' />
 					: error 
-						? <div>{error}</div>
+						? <div>{errorMessage}</div>
 						: articles.map((article, index) => 
 							<Article key={index} {...article} />
 					)
