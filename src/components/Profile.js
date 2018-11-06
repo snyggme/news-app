@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { cachedUser } from '../utils/network';
 import auth from '../utils/auth';
 
 class Profile extends Component {
 	componentDidMount() {
 		const { id } = this.props.login;
-		console.log(id)
+		
 		if (auth.isAuthenticated() && id === null) {
 			this.props.history.push('/login');
 		}
