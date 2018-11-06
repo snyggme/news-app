@@ -18,9 +18,12 @@ class Navbar extends Component {
 		}
 	}
 	render() {
-		const logText = auth.isAuthenticated()
+		let logText = auth.isAuthenticated()
 			? 'Logout'
 			: 'Login';
+
+		if (this.props.login.id === null)
+			logText = 'Login';
 
 		return (
 			<nav className='flex-nav'>
