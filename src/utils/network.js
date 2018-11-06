@@ -3,12 +3,16 @@ import {
     GET_NEWS_FAIL
 } from '../actions/NewsAction';
 import {
-    POST_LOGIN_SUCCESS,
-    POST_LOGIN_FAIL
+    GET_USER_SUCCESS,
+    GET_USER_FAIL
 } from '../actions/UserAction';
-import auth from './auth';
+import {
+    POST_LOGIN_SUCCESS,
+    POST_LOGIN_FAIL,
+} from '../actions/LoginAction';
 
-export let cached = false;
+export let cachedNews = false;
+export let cachedUser = false;
 
 const API_ROOT = 'https://5bc443613e0ce20013533336.mockapi.io';
 
@@ -19,7 +23,7 @@ export const httpGetNews = async (dispatch) => {
         if (response.ok) {
             const json = await response.json();
 
-            cached = true;
+            cachedNews = true;
 
             dispatch({
                 type: GET_NEWS_SUCCESS,
@@ -51,9 +55,6 @@ export const httpPostLogin = async (dispatch, data) => {
             const json = await response.json();
 
             if (json.status === 'ok') {
-
-                auth.login();
-
                 dispatch({
                     type: POST_LOGIN_SUCCESS,
                     payload: json.data.id
@@ -71,6 +72,40 @@ export const httpPostLogin = async (dispatch, data) => {
     } catch (e) {
         dispatch({
             type: POST_LOGIN_FAIL,
+            error: true,
+            payload: new Error(e).message
+        })
+    }
+}
+
+export const httpGetUserInfo = async (dispatch, id) => {
+    try {
+        const response = await fetch(`https://mysterious-reef-29460.herokuapp.com/api/v1/user-info/${id}`);
+
+        if (response.ok) {
+            const json = await response.json();
+
+            if (json.status === 'ok') {
+                
+                cachedUser = true;
+
+                dispatch({
+                    type: GET_USER_SUCCESS,
+                    payload: json.data
+                })
+            } else {
+                dispatch({
+                    type: GET_USER_FAIL,
+                    error: true,
+                    payload: json.message
+                })
+            }
+        } else {
+            throw new Error(response.status);
+        }
+    } catch (e) {
+        dispatch({
+            type: GET_USER_FAIL,
             error: true,
             payload: new Error(e).message
         })

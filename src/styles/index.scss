@@ -43,6 +43,15 @@ body {
 	li.flex-growing {
 		flex-grow: 1;
 	}
+
+	li.btn-login div {
+		cursor: pointer;
+		color: white;
+
+		&:hover {
+			color: #BF360C;
+		}
+	}
 }
 
 main {

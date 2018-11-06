@@ -1,36 +1,35 @@
 import { 
-	POST_LOGIN_REQUEST,
-	POST_LOGIN_SUCCESS,
-	POST_LOGIN_FAIL
+	GET_USER_REQUEST,
+	GET_USER_SUCCESS,
+	GET_USER_FAIL
 } from '../actions/UserAction';
 
 const initialState = {
-	data: [],
+	data: {},
 	error: false,
 	errorMessage: '',
-	id: null,
-	isChecking: false
+	isLoading: false
 };
 
 export const userReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case POST_LOGIN_REQUEST:
+		case GET_USER_REQUEST:
 			return {
 				...state,
-				isChecking: true
-			}
-		case POST_LOGIN_SUCCESS:
+			 	isLoading: true
+			 }
+		case GET_USER_SUCCESS:
 			return {
 				...state,
-				id: action.payload,
-				isChecking: false
+				data: action.payload,
+				isLoading: false
 			}
-		case POST_LOGIN_FAIL:
+		case GET_USER_FAIL:
 			return {
 				...state,
 				error: true,
 				errorMessage: action.payload,
-				isChecking: false
+				isLoading: false
 			}
  		default:
 			return state;

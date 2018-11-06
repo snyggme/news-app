@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import Article from './Article';
 
 class News extends Component {
-	constructor(props){
-		super(props);
-		
-		this.props.getNews();
+	componentDidMount() {
+		this.props.getNews()
 	}
 	render() {
 		const { isFetching, articles, error, errorMessage } = this.props.news;

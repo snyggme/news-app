@@ -1,21 +1,21 @@
-import { httpPostLogin } from '../utils/network';
+import { httpGetUserInfo, cachedUser } from '../utils/network';
 
-export const POST_LOGIN_REQUEST = 'POST_LOGIN_REQUEST';
-export const POST_LOGIN_SUCCESS = 'POST_LOGIN_SUCCESS';
-export const POST_LOGIN_FAIL = 'POST_LOGIN_FAIL';
+export const GET_USER_REQUEST = 'GET_USER_REQUEST';
+export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
+export const GET_USER_FAIL = 'GET_USER_FAIL';
 
-export const handleLogin = (e) => {
-	
-	return dispatch => {
-		e.preventDefault();
+export const getUserInfo = () => {
+	return (dispatch, getState) => {
+		if (!cachedUser) {
+			const { id } = getState().login;
 
-		const email = e.target.email.value;
-		const password = e.target.password.value;
+			if (id !== null) {
+				dispatch({
+					type: GET_USER_REQUEST
+				});
 
-		dispatch({
-			type: POST_LOGIN_REQUEST
-		});
-
-		httpPostLogin(dispatch, { email, password });
+				httpGetUserInfo(dispatch, id);
+			}
+		}
 	}
 }

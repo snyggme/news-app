@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
 
-import { handleLogin } from './actions/UserAction';
+import { getUserInfo } from './actions/UserAction';
 import { getNews } from './actions/NewsAction';
+import { handleLogin } from './actions/LoginAction'
 
 import Navbar from './components/Navbar';
 import Main from './components/Main';
@@ -17,7 +18,7 @@ class App extends Component {
     render() {
         return (
             <div>
-                <Navbar />
+                <Navbar {...this.props} />
                 <Switch>
                     <Route exact path='/' render={(routerProps) =>
                         <Main {...this.props} />
@@ -29,9 +30,7 @@ class App extends Component {
                     <Route path='/news/:articleId' render={(routerProps) => 
                         <Single {...this.props} {...routerProps} />
                     }/> 
-                    <PrivateRoute path='/profile' render={(routerProps) =>
-                        <Profile {...this.props} />
-                    }/>
+                    <PrivateRoute {...this.props} path='/profile' component={Profile}/>
                     <Route path='/login' render={(routerProps) =>
                         <LoginForm {...this.props} />
                     }/>
@@ -44,14 +43,16 @@ class App extends Component {
 const mapStateToProps = store => {
     return {
         news: store.news,
-        user: store.user
+        user: store.user,
+        login: store.login
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         handleLogin: (e) => dispatch(handleLogin(e)),
-        getNews: () => dispatch(getNews())
+        getNews: () => dispatch(getNews()),
+        getUserInfo: () => dispatch(getUserInfo())
     }
 }
 
