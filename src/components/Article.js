@@ -13,6 +13,11 @@ class Article extends Component {
 
 		this.handleClick = this.handleClick.bind(this);
 	}
+	shouldComponentUpdate() {
+		const { id, message: { text, articleId } } = this.props;
+		
+		return id === articleId
+	}
 	componentWillMount() {
 		this.rand1 = Math.floor(Math.random() * 28) + 1;
 		this.rand2 = Math.floor(Math.random() * 12);
@@ -30,8 +35,6 @@ class Article extends Component {
 	render() {
 		const { name, text, id, showTooltip, message } = this.props;
 		const messageText = message.text;
-		const messageId = message.articleId;
-
 		return (
 			<article>
 				<h3>
@@ -47,7 +50,7 @@ class Article extends Component {
 						className='article-bookmark' 
 						onClick={this.handleClick}>
 						<i className="fa fa-bookmark-o" aria-hidden="true">
-							{ showTooltip && messageId === id &&
+							{ showTooltip && 
 								<span className="tooltip">{messageText}</span>
 							}
 						</i>
