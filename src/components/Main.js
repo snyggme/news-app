@@ -1,5 +1,5 @@
 import React from 'react';
-import coffee from '../assets/coffee.svg'
+import coffee from '../assets/coffee.svg';
 
 const Main = (props) => {
 	return (

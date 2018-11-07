@@ -4,9 +4,9 @@ import auth from '../utils/auth';
 
 class LoginForm extends Component {
 	render() {
-		const { isChecking, error, errorMessage, id } = this.props.login;
+		const { isChecking, error, errorMessage } = this.props.login;
 
-		if (auth.isAuthenticated() && id !== null) {
+		if (auth.isAuthenticated()) {
 			return <Redirect
 	            		to={{
 	              			pathname: "/profile"

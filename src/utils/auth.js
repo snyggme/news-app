@@ -1,15 +1,21 @@
 class Auth {
-  login() {
+  login(id) {
     localStorage.setItem('authenticated', true);
+    localStorage.setItem('userId', id);
   }
   logout() {
     localStorage.setItem('authenticated', false);
+    delete localStorage['userId'];
   }
   isAuthenticated() {
-    return localStorage.getItem('authenticated') === 'true';
+    return localStorage.getItem('authenticated') === 'true'
   }
-  clear() {
+  getId() {
+    return +localStorage.getItem('userId');
+  }
+  clearAll() {
     delete localStorage['authenticated'];
+    delete localStorage['userId'];
   }
 }
 

@@ -20,7 +20,8 @@ export const loginReducer = (state = initialState, action) => {
 				isChecking: true
 			}
 		case POST_LOGIN_SUCCESS:
-			auth.login();
+			auth.login(action.payload);
+
 			return {
 				...state,
 				id: action.payload,

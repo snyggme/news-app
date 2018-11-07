@@ -210,6 +210,35 @@ main {
 	}
 }
 
+.profile-container {
+	max-width: 500px;
+	margin: 30px auto;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+
+	div {
+		flex: 1 1 50px;
+
+		span {
+			font-weight: bold;
+			color: #38588c;
+		}
+	}
+
+	.user-img {
+		align-self: center;
+		width: 100px;
+		height: 100px;
+	}	
+
+	.user-name {
+		text-align: center;
+		padding-top: 10px;
+		color: #38588c;
+	}
+}
+
 .loading {
     margin: 0 auto;
     margin-top: 50px;
