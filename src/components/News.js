@@ -7,7 +7,7 @@ class News extends Component {
 	}
 	render() {
 		const { isFetching, articles, error, errorMessage } = this.props.news;
-
+		const id  = 0;
 		return (
 			<section className='news-container'>
 				{ isFetching 
@@ -18,6 +18,7 @@ class News extends Component {
 							<Article 
 								key={index}
 								showTooltip={this.props.bookmarks.showTooltip}
+								message={this.props.bookmarks.message}
 								addBookmark={this.props.addBookmark}
 								clearTooltip={this.props.clearBookmarksTooltip}
 								{...article} />

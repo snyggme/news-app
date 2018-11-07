@@ -10,14 +10,27 @@ class Article extends Component {
 		this.rand2 = 0;
 		// mins read
 		this.rand3 = 0;
+
+		this.handleClick = this.handleClick.bind(this);
 	}
 	componentWillMount() {
 		this.rand1 = Math.floor(Math.random() * 28) + 1;
 		this.rand2 = Math.floor(Math.random() * 12);
 		this.rand3 = Math.floor(Math.random() * 20) + 3;
 	}
+	handleClick(e) {
+		const { name, id } = this.props;
+
+		this.props.addBookmark({ id, name });
+
+		setTimeout(() => {
+			this.props.clearTooltip();
+		}, 800);
+	}
 	render() {
-		const { name, text, id } = this.props;
+		const { name, text, id, showTooltip, message } = this.props;
+		const messageText = message.text;
+		const messageId = message.articleId;
 
 		return (
 			<article>
@@ -32,8 +45,12 @@ class Article extends Component {
 					</span>
 					<span 
 						className='article-bookmark' 
-						onClick={this.props.addBookmark.bind(null, { id, name })}>
-						<i className="fa fa-bookmark-o" aria-hidden="true"></i>
+						onClick={this.handleClick}>
+						<i className="fa fa-bookmark-o" aria-hidden="true">
+							{ showTooltip && messageId === id &&
+								<span className="tooltip">{messageText}</span>
+							}
+						</i>
 					</span>
 				</h3>
 				<Link className='article-button' to={`/news/${id}`}>

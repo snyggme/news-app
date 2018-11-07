@@ -3,7 +3,7 @@ import auth from '../utils/auth';
 export const ADD_BOOKMARK_SUCCESS = 'ADD_BOOKMARK_SUCCESS';
 export const ADD_BOOKMARK_FAIL = 'ADD_BOOKMARK_FAIL';
 export const DELETE_BOOKMARK = 'DELETE_BOOKMARK';
-export const CLEAR_BOOKMARK_TOOLTIP = 'CLEAR_BOOKMARK_TOOLTOP';
+export const CLEAR_BOOKMARK_TOOLTIP = 'CLEAR_BOOKMARK_TOOLTIP';
 
 export const addBookmark = (article) => {
 	return (dispatch, getState) => {
@@ -21,18 +21,30 @@ export const addBookmark = (article) => {
 			if (isAdded) {
 				dispatch({
 					type: ADD_BOOKMARK_FAIL,
-					payload: 'This bookmark already exists.'
+					payload: { 
+						text: 'This bookmark already exists.',
+						articleId: article.id
+					}
 				})
 			} else {
 				dispatch({
 					type: ADD_BOOKMARK_SUCCESS,
-					payload: article
+					payload: { 
+						article, 
+						message: { 
+							text:'Bookmark added!',
+							articleId: article.id
+						}
+					}
 				});
 			}
 		} else {
 			dispatch({
 				type: ADD_BOOKMARK_FAIL,
-				payload: 'You need to be authorized to add bookmarks.'
+				payload: {
+					text: 'You need to be authorized to add bookmarks.',
+					articleId: article.id
+				}
 			})
 		}
 	}

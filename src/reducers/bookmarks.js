@@ -5,7 +5,10 @@ import { CLEAR_BOOKMARK_TOOLTIP } from '../actions/BookmarkAction';
 
 const initialState = {
 	articles: [],
-	errorMessage: '',
+	message: { 
+		text: '',
+		articleId: null
+	},
 	showTooltip: false
 };
 
@@ -16,14 +19,21 @@ export const bookmarksReducer = (state = initialState, action) => {
 				...state,
 				articles: [
 					...state.articles,
-					action.payload
+					action.payload.article
 				],
+				message: {
+					text: action.payload.message.text,
+					articleId: action.payload.message.articleId
+				},
 				showTooltip: true
 			}
 		case ADD_BOOKMARK_FAIL:
 			return {
 				...state,
-				errorMessage: action.payload,
+				message: {
+					text: action.payload.text,
+					articleId: action.payload.articleId
+				},
 				showTooltip: true
 			}
 		case CLEAR_BOOKMARK_TOOLTIP:
@@ -34,6 +44,7 @@ export const bookmarksReducer = (state = initialState, action) => {
 		case DELETE_BOOKMARK:
 			const i = action.payload;
 			return {
+				...state,
 				articles: [
 					...state.articles.slice(0, i),
 					...state.articles.slice(i + 1)

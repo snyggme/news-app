@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import Bookmark from './Bookmark';
 import ErrorMessage from './ErrorMessage';
 import user from '../assets/user.svg';
 
@@ -31,7 +31,7 @@ class Profile extends Component {
 						? <ErrorMessage message={errorMessage} />
 						: (
 							<div className='profile-container'>
-								<img src={user} alr='user profile' className='user-img' />
+								<img src={user} alt='user profile' className='user-img' />
 								<div><h3 className='user-name'>Unknown User</h3></div>
 								<div>
 									<span className='city-name'>City: </span> 
@@ -45,13 +45,12 @@ class Profile extends Component {
 									<span className='langs-name'>Bookmarks: </span>
 									{ 
 										articles.map(({ id, name }) =>
-											<div key={id} className='bookmark-block'>
-												<Link to={`/news/${id}`}>
-													{name}
-												</Link>
-												<i className="fa fa-ban" aria-hidden="true"
-													onClick={this.props.deleteBookmark.bind(null, id)}></i>
-											</div>
+											<Bookmark 
+												key={id}
+												id={id}
+												name={name}
+												deleteBookmark={this.props.deleteBookmark} 
+											/>
 										)
 									}
 								</div>
@@ -64,4 +63,3 @@ class Profile extends Component {
 }
 
 export default Profile;
-

@@ -9,13 +9,18 @@ class Single extends Component {
 	renderArticle() {
 		const { articleId } = this.props.match.params;
 		const { text, name }= this.props.news.articles[articleId - 1];
+		const id = articleId - 1;
 
 		return(
 			<div className='single-article'>
 				<h2>{name}</h2>
 				<div>{text}</div>
 				<div className='single-article-bookmark'>
-					<i className="fa fa-bookmark-o" aria-hidden="true"></i>
+					<i 
+						className="fa fa-bookmark-o" 
+						aria-hidden="true"
+						onClick={this.props.addBookmark.bind(null, { id, name })}>
+					</i>
 				</div>
 			</div>
 		)
