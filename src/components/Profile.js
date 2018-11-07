@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import ErrorMessage from './ErrorMessage';
 import user from '../assets/user.svg';
 
 class Profile extends Component {
@@ -7,7 +9,8 @@ class Profile extends Component {
 	}
 	render() {
 		const { city, languages, social } = this.props.user.data;
-		const { isLoading } = this.props.user;
+		const { isLoading, error, errorMessage } = this.props.user;
+		const { articles } = this.props.bookmarks;
 
 		const langs = [];
 		const socials = [];
@@ -24,22 +27,36 @@ class Profile extends Component {
 			<section>
 				{ isLoading 
 					? <div className='loading' />
-					: (
-						<div className='profile-container'>
-							<img src={user} alr='user profile' className='user-img' />
-							<div><h3 className='user-name'>Unknown User</h3></div>
-							<div>
-								<span className='city-name'>City: </span> 
-								{city}
+					: error
+						? <ErrorMessage message={errorMessage} />
+						: (
+							<div className='profile-container'>
+								<img src={user} alr='user profile' className='user-img' />
+								<div><h3 className='user-name'>Unknown User</h3></div>
+								<div>
+									<span className='city-name'>City: </span> 
+									{city}
+								</div>
+								<div>
+									<span className='langs-name'>Knowledge of languages: </span>
+									{lang2}, {lang1}
+								</div>
+								<div>
+									<span className='langs-name'>Bookmarks: </span>
+									{ 
+										articles.map(({ id, name }) =>
+											<div key={id} className='bookmark-block'>
+												<Link to={`/news/${id}`}>
+													{name}
+												</Link>
+												<i className="fa fa-ban" aria-hidden="true"
+													onClick={this.props.deleteBookmark.bind(null, id)}></i>
+											</div>
+										)
+									}
+								</div>
 							</div>
-							<div>
-								<span className='langs-name'>Knowledge of languages: </span>
-								{lang2}, {lang1}
-							</div>
-							<div></div>
-						</div>
-					)
-
+						)
 				}
 			</section>
 		)	

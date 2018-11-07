@@ -8,7 +8,7 @@ export const GET_USER_FAIL = 'GET_USER_FAIL';
 export const getUserInfo = () => {
 	return (dispatch, getState) => {
 		if (!cachedUser) {
-			const id = auth.getId()
+			const id = auth.getId();
 
 			if (id !== null) {
 				dispatch({

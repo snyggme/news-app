@@ -30,7 +30,11 @@ class Article extends Component {
 					<span className='article-date'>
 						{`${months[this.rand2]} ${this.rand1}`}  &#183; {`${this.rand3} min read`}
 					</span>
-					<span className='article-bookmark'><i className="fa fa-bookmark-o" aria-hidden="true"></i></span>
+					<span 
+						className='article-bookmark' 
+						onClick={this.props.addBookmark.bind(null, { id, name })}>
+						<i className="fa fa-bookmark-o" aria-hidden="true"></i>
+					</span>
 				</h3>
 				<Link className='article-button' to={`/news/${id}`}>
 					<div>{text}</div>

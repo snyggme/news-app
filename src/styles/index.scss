@@ -207,6 +207,10 @@ main {
 		color: #545454;
 		background-color: $articletext;
 		border-color: #a8a8a8;
+
+		&:hover {
+			background-color: #cecece;
+		}
 	}
 }
 
@@ -237,6 +241,49 @@ main {
 		padding-top: 10px;
 		color: #38588c;
 	}
+}
+
+.bookmark-block {
+	display: inline-block;
+	background-color: #38588c;
+	padding: 3px 10px;
+
+	margin-right: 10px;
+	margin-bottom: 5px;
+
+	a {
+		text-decoration: none;
+		color: white;
+
+		&:hover {
+			color: $articletext;
+		}
+	}
+
+	i {
+		margin-left: 10px;
+		color: white;
+		cursor: pointer;
+
+		&:hover {
+			color: #f44b42;
+		}
+	}
+}
+
+.error-message {
+	position: absolute;
+	top: 12%;
+	left: 39%;
+	width: 400px;
+	height: 100px;
+	display: grid;
+	justify-content: center;
+	align-items: center;
+	background-color: #ff928c;
+	border: 2px solid #f44b42;
+	border-radius: 5px;
+	color: white;
 }
 
 .loading {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Redirect } from "react-router-dom";
+import { Redirect } from 'react-router-dom';
+import ErrorMessage from './ErrorMessage';
 import auth from '../utils/auth';
 
 class LoginForm extends Component {
@@ -16,17 +17,18 @@ class LoginForm extends Component {
 
 		return (
 		    <div>
+		    	{ error && 
+		    		<ErrorMessage message={errorMessage} />
+		    	}
 		    	{ isChecking
 		    		? <div className='loading' />
-		    		: error
-		    			? <div>{errorMessage}</div>
-		    			: (
-		    				<form id='login-form' onSubmit={this.props.handleLogin}>
-						    	<input required type="email" id="email" placeholder="email" />
-							    <input required type="password" id="password" placeholder="password" />
-							    <button type="submit" id="submit-btn">Submit</button>
-					    	</form>
-		    			)
+		    		: (	
+		    			<form id='login-form' onSubmit={this.props.handleLogin}>
+						   	<input required type="email" id="email" placeholder="email" />
+						    <input required type="password" id="password" placeholder="password" />
+						    <button type="submit" id="submit-btn">Submit</button>
+					    </form>
+		    		)
 		    	}
 		    </div>
 	  	);

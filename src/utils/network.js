@@ -41,7 +41,7 @@ export const httpGetNews = async (dispatch) => {
     }
 }
 
-export const httpPostLogin = async (dispatch, data) => {  
+export const httpPostLogin = async (dispatch, data, form) => {  
      try {
         const response = await fetch('https://mysterious-reef-29460.herokuapp.com/api/v1/validate', {  
             "method": "POST",
@@ -60,6 +60,9 @@ export const httpPostLogin = async (dispatch, data) => {
                     payload: json.data.id
                 })
             } else {
+
+                form.reset();
+
                 dispatch({
                     type: POST_LOGIN_FAIL,
                     error: true,
@@ -70,6 +73,9 @@ export const httpPostLogin = async (dispatch, data) => {
             throw new Error(response.status);
         }
     } catch (e) {
+
+        form.reset();
+
         dispatch({
             type: POST_LOGIN_FAIL,
             error: true,

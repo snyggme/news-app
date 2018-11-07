@@ -8,13 +8,14 @@ export const handleLogin = (e) => {
 	return dispatch => {
 		e.preventDefault();
 
-		const email = e.target.email.value;
-		const password = e.target.password.value;
+		const form = e.target;
+		const email = form.email.value;
+		const password = form.password.value;
 
 		dispatch({
 			type: POST_LOGIN_REQUEST
 		});
 
-		httpPostLogin(dispatch, { email, password });
+		httpPostLogin(dispatch, { email, password }, form);
 	}
 }

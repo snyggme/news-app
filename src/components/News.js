@@ -15,7 +15,12 @@ class News extends Component {
 					: error 
 						? <div>{errorMessage}</div>
 						: articles.map((article, index) => 
-							<Article key={index} {...article} />
+							<Article 
+								key={index}
+								showTooltip={this.props.bookmarks.showTooltip}
+								addBookmark={this.props.addBookmark}
+								clearTooltip={this.props.clearBookmarksTooltip}
+								{...article} />
 					)
 				}
 			</section>

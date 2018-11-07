@@ -6,7 +6,6 @@ import {
 import auth from '../utils/auth';
 
 const initialState = {
-	id: null,
 	error: false,
 	errorMessage: '',
 	isChecking: false
@@ -17,6 +16,7 @@ export const loginReducer = (state = initialState, action) => {
 		case POST_LOGIN_REQUEST:
 			return {
 				...state,
+				error: false,
 				isChecking: true
 			}
 		case POST_LOGIN_SUCCESS:
@@ -24,7 +24,7 @@ export const loginReducer = (state = initialState, action) => {
 
 			return {
 				...state,
-				id: action.payload,
+				error: false,
 				isChecking: false
 			}
 		case POST_LOGIN_FAIL:

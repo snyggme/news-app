@@ -16,12 +16,14 @@ export const userReducer = (state = initialState, action) => {
 		case GET_USER_REQUEST:
 			return {
 				...state,
+				error: false,
 			 	isLoading: true
 			 }
 		case GET_USER_SUCCESS:
 			return {
 				...state,
 				data: action.payload,
+				error: false,
 				isLoading: false
 			}
 		case GET_USER_FAIL:

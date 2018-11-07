@@ -4,7 +4,8 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 
 import { getUserInfo } from './actions/UserAction';
 import { getNews } from './actions/NewsAction';
-import { handleLogin } from './actions/LoginAction'
+import { handleLogin } from './actions/LoginAction';
+import { addBookmark, clearBookmarksTooltip, deleteBookmark } from './actions/BookmarkAction';
 
 import Navbar from './components/Navbar';
 import Main from './components/Main';
@@ -30,10 +31,10 @@ class App extends Component {
                     <Route path='/news/:articleId' render={(routerProps) => 
                         <Single {...this.props} {...routerProps} />
                     }/> 
-                    <PrivateRoute {...this.props} path='/profile' component={Profile}/>
                     <Route path='/login' render={(routerProps) =>
                         <LoginForm {...this.props} />
                     }/>
+                    <PrivateRoute {...this.props} path='/profile' component={Profile}/>
                 </Switch>
             </div>
         );
@@ -44,7 +45,8 @@ const mapStateToProps = store => {
     return {
         news: store.news,
         user: store.user,
-        login: store.login
+        login: store.login,
+        bookmarks: store.bookmarks
     }
 }
 
@@ -52,7 +54,10 @@ const mapDispatchToProps = dispatch => {
     return {
         handleLogin: (e) => dispatch(handleLogin(e)),
         getNews: () => dispatch(getNews()),
-        getUserInfo: () => dispatch(getUserInfo())
+        getUserInfo: () => dispatch(getUserInfo()),
+        addBookmark: (article) => dispatch(addBookmark(article)),
+        clearBookmarksTooltip: () => dispatch(clearBookmarksTooltip()),
+        deleteBookmark: (id) => dispatch(deleteBookmark(id))
     }
 }
 
