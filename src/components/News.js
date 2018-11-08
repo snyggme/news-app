@@ -7,7 +7,7 @@ class News extends Component {
 	}
 	render() {
 		const { isFetching, articles, error, errorMessage } = this.props.news;
-		const id  = 0;
+
 		return (
 			<section className='news-container'>
 				{ isFetching 

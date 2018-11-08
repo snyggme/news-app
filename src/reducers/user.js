@@ -5,7 +5,12 @@ import {
 } from '../actions/UserAction';
 
 const initialState = {
-	data: {},
+	data: {
+		userId: null,
+		city: '',
+		languages: [],
+		social: []
+	},
 	error: false,
 	errorMessage: '',
 	isLoading: false

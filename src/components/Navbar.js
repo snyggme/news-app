@@ -18,7 +18,8 @@ class Navbar extends Component {
 		}
 	}
 	render() {
-		const { isChecking } = this.props.login;
+		const { isChecking } = this.props.login;	
+		console.log('from navbar')
 
 		let logText = auth.isAuthenticated()
 			? 'Logout'

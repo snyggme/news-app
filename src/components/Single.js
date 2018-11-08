@@ -5,11 +5,24 @@ class Single extends Component {
 		super(props);
 
 		this.props.getNews();
+
+		this.handleClick = this.handleClick.bind(this);
+	}
+	handleClick(e) {
+		const { articleId } = this.props.match.params;
+		const { name, id } = this.props.news.articles[articleId - 1];
+
+		this.props.addBookmark({ id, name });
+
+		setTimeout(() => {
+			this.props.clearBookmarksTooltip();
+		}, 800);
 	}
 	renderArticle() {
 		const { articleId } = this.props.match.params;
-		const { text, name }= this.props.news.articles[articleId - 1];
-		const id = articleId - 1;
+		const { text, name, id } = this.props.news.articles[articleId - 1];
+		const { showTooltip, message } = this.props.bookmarks;
+		const messageText = message.text;
 
 		return(
 			<div className='single-article'>
@@ -19,7 +32,10 @@ class Single extends Component {
 					<i 
 						className="fa fa-bookmark-o" 
 						aria-hidden="true"
-						onClick={this.props.addBookmark.bind(null, { id, name })}>
+						onClick={this.handleClick}>
+						{ showTooltip && 
+							<span className="tooltip">{messageText}</span>
+						}
 					</i>
 				</div>
 			</div>

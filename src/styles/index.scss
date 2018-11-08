@@ -4,6 +4,7 @@ $navcolor: #171e27;
 $offwhite: #F5F5F6;
 $articletitle: #3e454f;
 $articletext: #E1E2E1;
+$hovernavcolor: #cecece;
 
 body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
@@ -32,7 +33,7 @@ body {
 		}
 
 		a:hover {
-			color: #BF360C;
+			color: $hovernavcolor;
 		}
 
 		i.fa {
@@ -49,7 +50,7 @@ body {
 		color: white;
 
 		&:hover {
-			color: #BF360C;
+			color: $hovernavcolor;
 		}
 	}
 }
@@ -127,18 +128,18 @@ main {
 				.tooltip {
 					display: inline-block;
 					padding: 15px 15px;
-					/*border: 1px solid white;*/
+					text-align: left;
 					border-radius: 5px;
 					position: absolute;
 					color: white;
 					background: #38588c;
 					top: -5px;
-					left: -200px;
+					right: 50px;
 					font-size: 18px;
 				}
 
 				&:hover {
-					color: #BF360C;
+					color: $articletext;
 					cursor: pointer;
 				}
 			}
@@ -180,12 +181,22 @@ main {
 		top: 100px;
 		right: 300px;
 		font-size: 30px;
-		transition: all 100ms;
+
+		.tooltip {
+			display: inline-block;
+			padding: 15px 15px;
+			border-radius: 5px;
+			position: absolute;
+			color: white;
+			background: #38588c;
+			top: -5px;
+			right: 50px;
+			font-size: 18px;
+		}
 
 		&:hover {
-			color: #BF360C;
+			color: $hovernavcolor;
 			cursor: pointer;
-			transform: scale(1.1);
 		}
 	}
 }
@@ -230,13 +241,13 @@ main {
 
 .profile-container {
 	max-width: 600px;
+	min-height: 400px;
 	margin: 30px auto;
 	display: flex;
-	flex-direction: column;
 	flex-wrap: wrap;
 
 	div {
-		flex: 1 1 50px;
+		flex: 1 1 100%;
 
 		span {
 			font-weight: bold;
@@ -245,15 +256,31 @@ main {
 	}
 
 	.user-img {
-		align-self: center;
+		flex-grow: 1;
 		width: 100px;
 		height: 100px;
 	}	
 
 	.user-name {
 		text-align: center;
-		padding-top: 10px;
 		color: #38588c;
+	}
+
+	div.social-links {
+		flex-basis: 50px;
+		align-self: flex-end;
+
+		a {
+			color: $navcolor;
+			
+			i {
+				transition: all 200ms;	
+
+				&:hover {
+					transform: scale(1.2);
+				}
+			}
+		}
 	}
 }
 
@@ -269,7 +296,7 @@ main {
 		color: white;
 
 		&:hover {
-			color: $articletext;
+			color: $hovernavcolor;
 		}
 	}
 

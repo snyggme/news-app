@@ -7,22 +7,17 @@ class Profile extends Component {
 	componentDidMount() {
 		this.props.getUserInfo();
 	}
+
 	render() {
-		const { city, languages, social } = this.props.user.data;
+		const { 
+			city, 
+			languages: [ lang1, lang2 ],
+			social
+		} = this.props.user.data;
 		const { isLoading, error, errorMessage } = this.props.user;
 		const { articles } = this.props.bookmarks;
 
-		const langs = [];
-		const socials = [];
 
-		for (let key in languages) {
-		    langs.push(languages[key])
-		}
-		for (let key in social) {
-		    socials.push(social[key])
-		}
-
-		const [ lang1, lang2 ] = langs;
 		return (
 			<section>
 				{ isLoading 
@@ -41,8 +36,8 @@ class Profile extends Component {
 									<span className='langs-name'>Knowledge of languages: </span>
 									{lang2}, {lang1}
 								</div>
-								<div>
-									<span className='langs-name'>Bookmarks: </span>
+								<div className='bookmarks-container'>
+									<span>Bookmarks [{articles.length}]: </span>
 									{ 
 										articles.map(({ id, name }) =>
 											<Bookmark 
@@ -54,6 +49,19 @@ class Profile extends Component {
 										)
 									}
 								</div>
+								{
+									social.map(({ label, link }) => 
+										<div key={label} className='social-links'>
+											<a href={link} target='_blank'>
+											{ label === 'web'
+												? <i className={`fa fa-user`} aria-hidden="true"></i>
+												: <i className={`fa fa-${label}`} aria-hidden="true"></i>
+											}
+											</a>
+										</div>
+									)
+								}
+
 							</div>
 						)
 				}

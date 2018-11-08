@@ -13,10 +13,13 @@ class Article extends Component {
 
 		this.handleClick = this.handleClick.bind(this);
 	}
-	shouldComponentUpdate() {
-		const { id, message: { text, articleId } } = this.props;
-		
-		return id === articleId
+	shouldComponentUpdate(nextProps) {
+		const { id, message: { text, articleId } } = nextProps;
+
+		if (text === '')
+			return true
+
+		return id === articleId;
 	}
 	componentWillMount() {
 		this.rand1 = Math.floor(Math.random() * 28) + 1;
@@ -35,6 +38,7 @@ class Article extends Component {
 	render() {
 		const { name, text, id, showTooltip, message } = this.props;
 		const messageText = message.text;
+
 		return (
 			<article>
 				<h3>

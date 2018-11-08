@@ -39,6 +39,10 @@ export const bookmarksReducer = (state = initialState, action) => {
 		case CLEAR_BOOKMARK_TOOLTIP:
 			return {
 				...state,
+				message: {
+					text: '',
+					articleId: null
+				},
 				showTooltip: false
 			}
 		case DELETE_BOOKMARK:
