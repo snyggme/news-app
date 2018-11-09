@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Bookmark from './Bookmark';
 import ErrorMessage from './ErrorMessage';
+import SocialLink from './SocialLink';
 import user from '../assets/user.svg';
 
 class Profile extends Component {
 	componentDidMount() {
 		this.props.getUserInfo();
 	}
-
 	render() {
 		const { 
 			city, 
@@ -16,7 +16,6 @@ class Profile extends Component {
 		} = this.props.user.data;
 		const { isLoading, error, errorMessage } = this.props.user;
 		const { articles } = this.props.bookmarks;
-
 
 		return (
 			<section>
@@ -51,17 +50,13 @@ class Profile extends Component {
 								</div>
 								{
 									social.map(({ label, link }) => 
-										<div key={label} className='social-links'>
-											<a href={link} target='_blank'>
-											{ label === 'web'
-												? <i className={`fa fa-user`} aria-hidden="true"></i>
-												: <i className={`fa fa-${label}`} aria-hidden="true"></i>
-											}
-											</a>
-										</div>
+										<SocialLink 
+											key={label} 
+											label={label} 
+											link={link}
+										/>
 									)
 								}
-
 							</div>
 						)
 				}

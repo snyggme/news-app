@@ -16,11 +16,11 @@ class Single extends Component {
 
 		setTimeout(() => {
 			this.props.clearBookmarksTooltip();
-		}, 800);
+		}, 1000);
 	}
 	renderArticle() {
 		const { articleId } = this.props.match.params;
-		const { text, name, id } = this.props.news.articles[articleId - 1];
+		const { text, name } = this.props.news.articles[articleId - 1];
 		const { showTooltip, message } = this.props.bookmarks;
 		const messageText = message.text;
 

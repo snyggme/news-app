@@ -3,6 +3,7 @@ import { httpPostLogin } from '../utils/network';
 export const POST_LOGIN_REQUEST = 'POST_LOGIN_REQUEST';
 export const POST_LOGIN_SUCCESS = 'POST_LOGIN_SUCCESS';
 export const POST_LOGIN_FAIL = 'POST_LOGIN_FAIL';
+export const LOGOUT = 'LOGOUT';
 
 export const handleLogin = (e) => {
 	return dispatch => {
@@ -17,5 +18,13 @@ export const handleLogin = (e) => {
 		});
 
 		httpPostLogin(dispatch, { email, password }, form);
+	}
+}
+
+export const handleLogout = () => {
+	return dispatch => {
+		dispatch({
+			type: LOGOUT
+		});
 	}
 }

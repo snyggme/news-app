@@ -8,9 +8,15 @@ class Navbar extends Component {
 
 		this.handleClick = this.handleClick.bind(this);
 	}
+	shouldComponentUpdate(nextProps) {
+		if (nextProps.login.isLogged !== this.props.login.isLogged)
+			return true
+
+		return nextProps.login.isChecking !== this.props.login.isChecking;
+	}
 	handleClick(e) {
 		if (auth.isAuthenticated()) {
-			auth.logout();
+			this.props.handleLogout();
 
 			this.props.history.push('/');
 		} else {
@@ -18,8 +24,7 @@ class Navbar extends Component {
 		}
 	}
 	render() {
-		const { isChecking } = this.props.login;	
-		console.log('from navbar')
+		const { isChecking, isLogged } = this.props.login;
 
 		let logText = auth.isAuthenticated()
 			? 'Logout'

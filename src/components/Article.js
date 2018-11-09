@@ -33,7 +33,7 @@ class Article extends Component {
 
 		setTimeout(() => {
 			this.props.clearTooltip();
-		}, 800);
+		}, 1000);
 	}
 	render() {
 		const { name, text, id, showTooltip, message } = this.props;
