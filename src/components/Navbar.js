@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import auth from '../utils/auth';
 
 class Navbar extends Component {
 	constructor(props) {
 		super(props);
-
+		
 		this.handleClick = this.handleClick.bind(this);
 	}
 	shouldComponentUpdate(nextProps) {
@@ -15,7 +14,7 @@ class Navbar extends Component {
 		return nextProps.login.isChecking !== this.props.login.isChecking;
 	}
 	handleClick(e) {
-		if (auth.isAuthenticated()) {
+		if (this.props.login.isLogged) {
 			this.props.handleLogout();
 
 			this.props.history.push('/');
@@ -26,7 +25,7 @@ class Navbar extends Component {
 	render() {
 		const { isChecking, isLogged } = this.props.login;
 
-		let logText = auth.isAuthenticated()
+		let logText = isLogged
 			? 'Logout'
 			: 'Login';
 

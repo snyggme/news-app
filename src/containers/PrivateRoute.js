@@ -4,13 +4,14 @@ import { Route, Redirect } from "react-router-dom";
 
 import { getUserInfo } from '../actions/UserAction';
 import { deleteBookmark } from '../actions/BookmarkAction';
-import auth from "../utils/auth";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
+	const { isLogged } = rest;
+
 	return (
 	    <Route
 	      	render={props =>
-	        	auth.isAuthenticated()
+	        	isLogged
 		        	? <Component {...rest} {...props} />
 		        	: <Redirect
 		            		to={{
@@ -25,7 +26,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 const mapStateToProps = store => {
     return {
         user: store.user,
-        bookmarks: store.bookmarks
+        bookmarks: store.bookmarks,
+        isLogged: store.login.isLogged
     }
 }
 
