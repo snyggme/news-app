@@ -36,8 +36,13 @@ class Article extends Component {
 		}, 1000);
 	}
 	render() {
-		const { name, text, id, showTooltip, message } = this.props;
+		const { name, id, showTooltip, message } = this.props;
+		let { text } = this.props;
 		const messageText = message.text;
+
+		if (text.length > 750) {
+			text = text.slice(0, 750) + ' ...'
+		}
 
 		return (
 			<article>
