@@ -7,7 +7,7 @@ import { deleteBookmark } from '../actions/BookmarkAction';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
 	const { isLogged } = rest;
-
+	console.log(isLogged)
 	return (
 	    <Route
 	      	render={props =>
